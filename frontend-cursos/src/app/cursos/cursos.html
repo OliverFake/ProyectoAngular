@@ -1,0 +1,25 @@
+<div class="container mt-4">
+    <h2>Gestión de Cursos</h2>
+    <form (ngSubmit)="guardarCurso()">
+        <input type="text" placeholder="Nombre del curso" [(ngModel)]="curso.nombre" name="nombre">
+        <input type="number" placeholder="Precio" [(ngModel)]="curso.precio" name="precio">
+        <select [(ngModel)]="curso.modalidad" name="modalidad">
+            <option value="">Seleccione modalidad</option>
+            <option value="Virtual">Virtual</option>
+            <option value="Presencial">Presencial</option>
+        </select>
+        <hr>
+        <h3>Lista de cursos</h3>
+        <button type="submit">
+            {{ idEditar === null ? 'Registrar' : 'Actualizar' }}
+        </button>
+    </form>
+    <div *ngFor="let curso of cursos">
+        <h4>{{ curso.nombre }}</h4>
+        <p>Precio: S/ {{ curso.precio }}</p>
+        <p>Modalidad: {{ curso.modalidad }}</p>
+        <button (click)="editarCurso(curso)">Editar</button>
+        <button (click)="eliminarCurso(curso.id)">Eliminar</button>
+        <hr>
+    </div>
+</div>
